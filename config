@@ -1,0 +1,5 @@
+export SERVICE_NAME=remotedev
+export SERVICE_REMOTE_DEV_SOURCE_CODE_DIR=/home/workspace/code
+
+export SERVICE_REMOTE_DEV_COMPANY= # zcorky
+export SERVICE_REMOTE_DEV_SSH_PORT= # 30022

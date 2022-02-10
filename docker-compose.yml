@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  workspace:
+    restart: always
+    build:
+      context: ./image
+    ports:
+      - 0.0.0.0:${SERVICE_REMOTE_DEV_SSH_PORT}:22
+    hostname: ${SERVICE_REMOTE_DEV_COMPANY}
+    environment:
+      INLETS_CLIENT_ID: ${SERVICE_REMOTE_DEV_INLETS_CLIENT_ID}
+      INLETS_CLIENT_SECRET: ${SERVICE_REMOTE_DEV_INLETS_CLIENT_SECRET}
+      INLETS_PORT: ${SERVICE_REMOTE_DEV_INLETS_PORT}
+      GIT_USER: ${SERVICE_REMOTE_DEV_GIT_USER}
+      GIT_EMAIL: ${SERVICE_REMOTE_DEV_GIT_EMAIL}
+    volumes:
+      - ${SERVICE_DATA}/.vscode-server:/home/workspace/.vscode-server
+      - ${SERVICE_DATA}/.ssh:/home/workspace/.ssh
+      - type: bind
+        source: ${SERVICE_REMOTE_DEV_SOURCE_CODE_DIR}
+        target: /home/workspace/code
+
+networks:
+  default:
+    external: true
+    name: compose-ingress
