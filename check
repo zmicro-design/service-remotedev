@@ -34,14 +34,14 @@ check() {
     echo "SERVICE_REMOTE_DEV_SSH_PORT=$value" >> $SERVICE_CONFIG
   fi
 
-  if [ "$SERVICE_WORKSPACE_PREVILEGED" != "true" ]; then
+  if [ "$SERVICE_REMOTE_DEV_PREVILEGED" != "true" ]; then
     local choices=(
       "Yes"
       "No"
     )
     inquirer::select "Allow root previledge ?" choices value
     if [ "$value" = "Yes" ]; then
-      echo "SERVICE_WORKSPACE_PREVILEGED=true" >> $SERVICE_CONFIG
+      echo "SERVICE_REMOTE_DEV_PREVILEGED=true" >> $SERVICE_CONFIG
     fi
   fi
 
@@ -54,7 +54,7 @@ check() {
   export SERVICE_REMOTE_DEV_GIT_USER=$SERVICE_REMOTE_DEV_GIT_USER
   export SERVICE_REMOTE_DEV_GIT_EMAIL=$SERVICE_REMOTE_DEV_GIT_EMAIL
   export SERVICE_REMOTE_DEV_SSH_PORT=$SERVICE_REMOTE_DEV_SSH_PORT
-  export SERVICE_WORKSPACE_PREVILEGED=$SERVICE_WORKSPACE_PREVILEGED
+  export SERVICE_REMOTE_DEV_PREVILEGED=$SERVICE_REMOTE_DEV_PREVILEGED
 }
 
 check $@
