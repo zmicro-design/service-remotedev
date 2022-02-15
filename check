@@ -14,21 +14,6 @@ check() {
     echo "SERVICE_REMOTE_DEV_COMPANY=$value" >> $SERVICE_CONFIG
   fi
 
-  if [ -z "$SERVICE_REMOTE_DEV_INLETS_CLIENT_ID" ]; then
-    inquirer::text "请输入 SERVICE_REMOTE_DEV_INLETS_CLIENT_ID:" value
-    echo "SERVICE_REMOTE_DEV_INLETS_CLIENT_ID=$value" > $SERVICE_CONFIG
-  fi
-
-  if [ -z "$SERVICE_REMOTE_DEV_INLETS_CLIENT_SECRET" ]; then
-    inquirer::text "请输入 SERVICE_REMOTE_DEV_INLETS_CLIENT_SECRET:" value
-    echo "SERVICE_REMOTE_DEV_INLETS_CLIENT_SECRET=$value" >> $SERVICE_CONFIG
-  fi
-
-  if [ -z "$SERVICE_REMOTE_DEV_INLETS_PORT" ]; then
-    inquirer::text "请输入 SERVICE_REMOTE_DEV_INLETS_PORT:" value
-    echo "SERVICE_REMOTE_DEV_INLETS_PORT=$value" >> $SERVICE_CONFIG
-  fi
-
   if [ -z "$SERVICE_REMOTE_DEV_SOURCE_CODE_DIR" ]; then
     inquirer::text "请输入 SERVICE_REMOTE_DEV_SOURCE_CODE_DIR:" value
     echo "SERVICE_REMOTE_DEV_SOURCE_CODE_DIR=$value" >> $SERVICE_CONFIG
@@ -49,6 +34,17 @@ check() {
     echo "SERVICE_REMOTE_DEV_SSH_PORT=$value" >> $SERVICE_CONFIG
   fi
 
+  if [ "$SERVICE_WORKSPACE_PREVILEGED" != "true" ]; then
+    local choices=(
+      "Yes"
+      "No"
+    )
+    inquirer::select "Allow root previledge ?" choices value
+    if [ "$value" = "Yes" ]; then
+      echo "SERVICE_WORKSPACE_PREVILEGED=true" >> $SERVICE_CONFIG
+    fi
+  fi
+
   #@TODO
   export SERVICE_REMOTE_DEV_COMPANY=$SERVICE_REMOTE_DEV_COMPANY
   export SERVICE_REMOTE_DEV_INLETS_CLIENT_ID=$SERVICE_REMOTE_DEV_INLETS_CLIENT_ID
@@ -58,6 +54,7 @@ check() {
   export SERVICE_REMOTE_DEV_GIT_USER=$SERVICE_REMOTE_DEV_GIT_USER
   export SERVICE_REMOTE_DEV_GIT_EMAIL=$SERVICE_REMOTE_DEV_GIT_EMAIL
   export SERVICE_REMOTE_DEV_SSH_PORT=$SERVICE_REMOTE_DEV_SSH_PORT
+  export SERVICE_WORKSPACE_PREVILEGED=$SERVICE_WORKSPACE_PREVILEGED
 }
 
 check $@
