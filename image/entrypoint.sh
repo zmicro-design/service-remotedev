@@ -26,6 +26,13 @@ fi
 # Change Mirror
 # bash /build/scripts/change-mirrors.sh
 
+# Permission
+[ ! -d "$HOME/.ssh" ] && sudo mkdir -p $HOME/.ssh
+sudo chown -R $USER $HOME/.ssh
+#
+[ ! -d "$HOME/.vscode-server" ] && sudo mkdir -p $HOME/.vscode-server
+sudo chown -R $USER $HOME/.vscode-server
+
 echo ""
 echo "##################################"
 echo "Now, Everything is Ready ..."
