@@ -27,6 +27,9 @@ fi
 # bash /build/scripts/change-mirrors.sh
 
 # Permission
+[ ! -d "$HOME/code" ] && sudo mkdir -p $HOME/code
+sudo chown -R $USER $HOME/code
+#
 [ ! -d "$HOME/.ssh" ] && sudo mkdir -p $HOME/.ssh
 sudo chown -R $USER $HOME/.ssh
 #
