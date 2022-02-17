@@ -6,16 +6,16 @@ services:
     build:
       context: ./image
     ports:
-      - 0.0.0.0:${SERVICE_REMOTE_DEV_SSH_PORT}:22
-    hostname: ${SERVICE_REMOTE_DEV_COMPANY}
-    privileged: ${SERVICE_REMOTE_DEV_PREVILEGED}
+      - 0.0.0.0:${SERVICE_REMOTEDEV_SSH_PORT}:22
+    hostname: ${SERVICE_REMOTEDEV_COMPANY}
+    privileged: ${SERVICE_REMOTEDEV_PREVILEGED}
     environment:
-      GIT_USER: ${SERVICE_REMOTE_DEV_GIT_USER}
-      GIT_EMAIL: ${SERVICE_REMOTE_DEV_GIT_EMAIL}
+      GIT_USER: ${SERVICE_REMOTEDEV_GIT_USER}
+      GIT_EMAIL: ${SERVICE_REMOTEDEV_GIT_EMAIL}
     volumes:
       - ${SERVICE_DATA}/.vscode-server:/home/workspace/.vscode-server
       - ${SERVICE_DATA}/.ssh:/home/workspace/.ssh
-      - ${SERVICE_REMOTE_DEV_SOURCE_CODE_DIR}:/home/workspace/code
+      - ${SERVICE_REMOTEDEV_SOURCE_CODE_DIR}:/home/workspace/code
 
 networks:
   default:
