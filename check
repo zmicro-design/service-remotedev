@@ -34,7 +34,7 @@ check() {
     echo "SERVICE_REMOTEDEV_SSH_PORT=$value" >> $SERVICE_CONFIG
   fi
 
-  if [ "$SERVICE_REMOTEDEV_PREVILEGED" != "true" ]; then
+  if [ -z "$SERVICE_REMOTEDEV_PREVILEGED" ]; then
     local choices=(
       "Yes"
       "No"
@@ -42,6 +42,8 @@ check() {
     inquirer::select "Allow root previledge ?" choices value
     if [ "$value" = "Yes" ]; then
       echo "SERVICE_REMOTEDEV_PREVILEGED=true" >> $SERVICE_CONFIG
+    else
+      echo "SERVICE_REMOTEDEV_PREVILEGED=false" >> $SERVICE_CONFIG
     fi
   fi
 
