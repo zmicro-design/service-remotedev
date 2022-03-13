@@ -64,6 +64,14 @@ check() {
   # USER / GROUP
   export SERVICE_REMOTEDEV_USER_ID=$(id -u)
   export SERVICE_REMOTEDEV_GROUP_ID=$(id -g)
+  # Docker
+  export SERVICE_REMOTEDEV_DOCKER_SOCK=/var/run/docker.sock
+  # @TODO placeholder
+  export SERVICE_REMOTEDEV_DOCKER_CLI=/bin/bash
+  which docker >> /dev/null 2>&1
+  if [ $? -eq 0 ]; then
+    export SERVICE_REMOTEDEV_DOCKER_CLI=$(which docker)
+  fi
 }
 
 check $@
