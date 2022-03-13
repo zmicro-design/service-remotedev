@@ -17,8 +17,8 @@ services:
       - ${SERVICE_DATA}/.vscode-server:/home/workspace/.vscode-server
       - ${SERVICE_DATA}/.ssh:/home/workspace/.ssh
       - ${SERVICE_REMOTEDEV_SOURCE_CODE_DIR}:/home/workspace/code
-      - /usr/bin/docker:/usr/bin/docker
-      - /var/run/docker.sock:/var/run/docker.sock
+      - ${SERVICE_REMOTEDEV_DOCKER_CLI}:/usr/bin/docker
+      - ${SERVICE_REMOTEDEV_DOCKER_SOCK}:/var/run/docker.sock
 
 networks:
   default:
