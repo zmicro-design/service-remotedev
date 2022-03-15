@@ -11,27 +11,27 @@ check() {
 
   if [ -z "$SERVICE_REMOTEDEV_COMPANY" ]; then
     inquirer::text "请输入 SERVICE_REMOTEDEV_COMPANY:" value
-    echo "SERVICE_REMOTEDEV_COMPANY=$value" >> $SERVICE_CONFIG
+    config::set SERVICE_REMOTEDEV_COMPANY $value $SERVICE_CONFIG
   fi
 
   if [ -z "$SERVICE_REMOTEDEV_SOURCE_CODE_DIR" ]; then
     inquirer::text "请输入 SERVICE_REMOTEDEV_SOURCE_CODE_DIR:" value
-    echo "SERVICE_REMOTEDEV_SOURCE_CODE_DIR=$value" >> $SERVICE_CONFIG
+    config::set SERVICE_REMOTEDEV_SOURCE_CODE_DIR $value $SERVICE_CONFIG
   fi
 
   if [ -z "$SERVICE_REMOTEDEV_GIT_USER" ]; then
     inquirer::text "请输入 SERVICE_REMOTEDEV_GIT_USER:" value
-    echo "SERVICE_REMOTEDEV_GIT_USER=$value" >> $SERVICE_CONFIG
+    config::set SERVICE_REMOTEDEV_GIT_USER $value $SERVICE_CONFIG
   fi
 
   if [ -z "$SERVICE_REMOTEDEV_GIT_EMAIL" ]; then
     inquirer::text "请输入 SERVICE_REMOTEDEV_GIT_EMAIL:" value
-    echo "SERVICE_REMOTEDEV_GIT_EMAIL=$value" >> $SERVICE_CONFIG
+    config::set SERVICE_REMOTEDEV_GIT_EMAIL $value $SERVICE_CONFIG
   fi
 
   if [ -z "$SERVICE_REMOTEDEV_SSH_PORT" ]; then
     inquirer::text "请输入 SERVICE_REMOTEDEV_SSH_PORT:" value
-    echo "SERVICE_REMOTEDEV_SSH_PORT=$value" >> $SERVICE_CONFIG
+    config::set SERVICE_REMOTEDEV_SSH_PORT $value $SERVICE_CONFIG
   fi
 
   if [ -z "$SERVICE_REMOTEDEV_PREVILEGED" ]; then
@@ -41,9 +41,9 @@ check() {
     )
     inquirer::select "Allow root previledge ?" choices value
     if [ "$value" = "Yes" ]; then
-      echo "SERVICE_REMOTEDEV_PREVILEGED=true" >> $SERVICE_CONFIG
+      config::set SERVICE_REMOTEDEV_PREVILEGED true $SERVICE_CONFIG
     else
-      echo "SERVICE_REMOTEDEV_PREVILEGED=false" >> $SERVICE_CONFIG
+      config::set SERVICE_REMOTEDEV_PREVILEGED false $SERVICE_CONFIG
     fi
   fi
 
