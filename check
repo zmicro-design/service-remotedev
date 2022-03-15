@@ -7,6 +7,10 @@ check() {
      touch $SERVICE_CONFIG
   fi
 
+  if [ "$DEBUG" = "true" ]; then
+    export
+  fi
+
   config::check_or_set SERVICE_REMOTEDEV_COMPANY text $SERVICE_CONFIG
   # config::check_or_set SERVICE_REMOTEDEV_SOURCE_CODE_DIR text $SERVICE_CONFIG
   config::check_or_set SERVICE_REMOTEDEV_GIT_USER text $SERVICE_CONFIG
