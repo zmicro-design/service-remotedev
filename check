@@ -8,33 +8,31 @@ check() {
   fi
 
   if [ "$DEBUG" = "true" ]; then
-    # export
-    echo "XXX SERVICE"
-    echo "SERVICE_REMOTEDEV_COMPANY: $SERVICE_REMOTEDEV_COMPANY"
-    echo "SERVICE_REMOTEDEV_GIT_USER: $SERVICE_REMOTEDEV_GIT_USER"
-    echo "SERVICE_REMOTEDEV_GIT_EMAIL: $SERVICE_REMOTEDEV_GIT_EMAIL"
-    echo "SERVICE_REMOTEDEV_SSH_PORT: $SERVICE_REMOTEDEV_SSH_PORT"
-    echo "SERVICE_REMOTEDEV_PREVILEGED: $SERVICE_REMOTEDEV_PREVILEGED"
+    echo "[remotedev] SERVICE_REMOTEDEV_COMPANY: $SERVICE_REMOTEDEV_COMPANY"
+    echo "[remotedev] SERVICE_REMOTEDEV_GIT_USER: $SERVICE_REMOTEDEV_GIT_USER"
+    echo "[remotedev] SERVICE_REMOTEDEV_GIT_EMAIL: $SERVICE_REMOTEDEV_GIT_EMAIL"
+    echo "[remotedev] SERVICE_REMOTEDEV_SSH_PORT: $SERVICE_REMOTEDEV_SSH_PORT"
+    echo "[remotedev] SERVICE_REMOTEDEV_PREVILEGED: $SERVICE_REMOTEDEV_PREVILEGED"
   fi
 
-  # config::check_or_set SERVICE_REMOTEDEV_COMPANY text $SERVICE_CONFIG
-  # # config::check_or_set SERVICE_REMOTEDEV_SOURCE_CODE_DIR text $SERVICE_CONFIG
-  # config::check_or_set SERVICE_REMOTEDEV_GIT_USER text $SERVICE_CONFIG
-  # config::check_or_set SERVICE_REMOTEDEV_GIT_EMAIL text $SERVICE_CONFIG
-  # config::check_or_set SERVICE_REMOTEDEV_SSH_PORT text $SERVICE_CONFIG
-  # config::check_or_set SERVICE_REMOTEDEV_PREVILEGED yesno $SERVICE_CONFIG
+  config::check_or_set SERVICE_REMOTEDEV_COMPANY text $SERVICE_CONFIG
+  # config::check_or_set SERVICE_REMOTEDEV_SOURCE_CODE_DIR text $SERVICE_CONFIG
+  config::check_or_set SERVICE_REMOTEDEV_GIT_USER text $SERVICE_CONFIG
+  config::check_or_set SERVICE_REMOTEDEV_GIT_EMAIL text $SERVICE_CONFIG
+  config::check_or_set SERVICE_REMOTEDEV_SSH_PORT text $SERVICE_CONFIG
+  config::check_or_set SERVICE_REMOTEDEV_PREVILEGED yesno $SERVICE_CONFIG
 
-  # # USER / GROUP
-  # export SERVICE_REMOTEDEV_USER_ID=$(id -u)
-  # export SERVICE_REMOTEDEV_GROUP_ID=$(id -g)
-  # # Docker
-  # export SERVICE_REMOTEDEV_DOCKER_SOCK=/var/run/docker.sock
-  # # @TODO placeholder
-  # export SERVICE_REMOTEDEV_DOCKER_CLI=/bin/bash
-  # which docker >> /dev/null 2>&1
-  # if [ $? -eq 0 ]; then
-  #   export SERVICE_REMOTEDEV_DOCKER_CLI=$(which docker)
-  # fi
+  # USER / GROUP
+  export SERVICE_REMOTEDEV_USER_ID=$(id -u)
+  export SERVICE_REMOTEDEV_GROUP_ID=$(id -g)
+  # Docker
+  export SERVICE_REMOTEDEV_DOCKER_SOCK=/var/run/docker.sock
+  # @TODO placeholder
+  export SERVICE_REMOTEDEV_DOCKER_CLI=/bin/bash
+  which docker >> /dev/null 2>&1
+  if [ $? -eq 0 ]; then
+    export SERVICE_REMOTEDEV_DOCKER_CLI=$(which docker)
+  fi
 }
 
 check $@
