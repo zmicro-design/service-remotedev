@@ -36,6 +36,7 @@ sudo chown -R $USER $HOME/.ssh
 [ ! -d "$HOME/.vscode-server" ] && sudo mkdir -p $HOME/.vscode-server
 sudo chown -R $USER $HOME/.vscode-server
 
+# @TODO
 if [ -n "$GIT_USER" ]; then
   zmicro config git $GIT_USER $GIT_EMAIL
 fi
