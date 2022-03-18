@@ -33,6 +33,16 @@ check() {
   if [ $? -eq 0 ]; then
     export SERVICE_REMOTEDEV_DOCKER_CLI=$(which docker)
   fi
+
+  if [ "$SERVICE_REMOTEDEV_PREVILEGED" = "false" ]; then
+    local fake_docker_sock=/tmp/fake_docker.sock
+    if [ ! -f $fake_docker_sock ]; then
+      touch $fake_docker_sock
+      echo "no permission, fake docker sock" > $fake_docker_sock
+    fi
+
+    export SERVICE_REMOTEDEV_DOCKER_SOCK=$fake_docker_sock
+  fi
 }
 
 check $@
