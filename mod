@@ -1,3 +1,3 @@
 NAME=remote-dev
-VERSION=v1.3.12
+VERSION=v1.3.13
 DESCRIPTION="Remote Dev Service"
