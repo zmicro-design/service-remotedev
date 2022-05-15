@@ -19,6 +19,7 @@ services:
       - ${SERVICE_REMOTEDEV_SOURCE_CODE_DIR}:/home/workspace/code
       # - ${SERVICE_DATA}/zmicro/data:/data
       # - ${SERVICE_DATA}/zmicro/configs:/configs
+      - ${SERVICE_DATA}/zmicro_data:/zmicro_data
       # - ${SERVICE_REMOTEDEV_DOCKER_CLI}:/usr/bin/docker
       # - ${SERVICE_REMOTEDEV_DOCKER_SOCK}:/var/run/docker.sock
       - type: bind
