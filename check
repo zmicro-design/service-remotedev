@@ -35,6 +35,9 @@ check() {
   if [ "$SERVICE_REMOTEDEV_PREVILEGED" = "false" ]; then
     local fake_docker_sock=/tmp/fake_docker.sock
     if [ ! -f $fake_docker_sock ]; then
+      # make fake_docker_sock is a directory after docker bind
+      sudo rm -rf $fake_docker_sock
+
       touch $fake_docker_sock
       echo "no permission, fake docker sock" > $fake_docker_sock
     fi
